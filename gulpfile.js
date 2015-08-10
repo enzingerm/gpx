@@ -5,7 +5,8 @@ var fs = require('fs'),
     mocha = require('gulp-mocha'),
     plato = require('gulp-plato'),
     sequence = require('run-sequence'),
-    stylish = require('jshint-stylish');
+    stylish = require('jshint-stylish'),
+    browserify = require('gulp-browserify');
 
 gulp.task('report', function() {
     var jshintOptions = JSON.parse(fs.readFileSync('./.jshintrc'));
@@ -52,4 +53,13 @@ gulp.task('test', function() {
     return gulp
         .src([ './test/*.js' ])
         .pipe(mocha({ reporter: 'spec' }));
+});
+
+gulp.task('browserify', function() {
+    // Single entry point to browserify 
+    gulp.src('index.js')
+        .pipe(browserify({
+          insertGlobals : true
+        }))
+        .pipe(gulp.dest('./browerify'))
 });
