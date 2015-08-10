@@ -61,5 +61,5 @@ gulp.task('browserify', function() {
         .pipe(browserify({
           insertGlobals : true
         }))
-        .pipe(gulp.dest('./browerify'))
+        .pipe(gulp.dest('./browserify'))
 });
